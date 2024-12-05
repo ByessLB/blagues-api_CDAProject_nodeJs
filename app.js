@@ -8,9 +8,7 @@ const errorHandler = require('./middleware/errorHandler');
 const PORT = process.env.PORT || 3000;
 
 // Middlewares
-app.use(cors({
-    origin: 'https://byesslb.github.io/blagues-api_CDAProject_frontend_ReactJs/',
-}));
+app.use(cors());
 app.use(express.json());
 
 // Middleware de gestion des erreurs
