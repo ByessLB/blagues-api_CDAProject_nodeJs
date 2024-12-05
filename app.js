@@ -8,7 +8,9 @@ const errorHandler = require('./middleware/errorHandler');
 const PORT = process.env.PORT || 3000;
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin: 'https://byesslb.github.io/blagues-api_CDAProject_frontend_ReactJs/',
+}));
 app.use(express.json());
 
 // Middleware de gestion des erreurs
@@ -18,11 +20,14 @@ app.use(errorHandler);
 app.use('/api', blagueRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Démarrage du serveur
+// "force: false" Assure que les models soit synchro avec la bdd chaque demarrage d'application en gardant les données existantes
+// alors que "force: true" supprimera et recréera toutes les tables à chaque demarrage sans données
 db.sequelize.sync({ force: false }).then(() => {
+    // Démarrage du serveur
     app.listen(PORT, () => {
         console.log('Base de données synchonisée.');
         console.log(`Serveur démarré sur : http://localhost:${PORT}`);
+        console.log(`Serveur démarré sur : https://blagues-api.onrender.com`);
     });
 
 }).catch(error => {

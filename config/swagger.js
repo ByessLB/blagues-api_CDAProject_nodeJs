@@ -10,7 +10,7 @@ const swaggerOptions = {
             description: 'API pour les blagues de Carambar & Co',
         },
     },
-    apis: ['./routes/*.js', './models/*.js'],
+    apis: ['./routes/*.js', './models/*.js'], // Chemin vers les fichiers d'annotations JsDocs
 };
 
 const specs = swaggerJsdoc(swaggerOptions);
